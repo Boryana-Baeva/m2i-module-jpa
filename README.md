@@ -1,5 +1,12 @@
-# Postgres Database
-## Database name : poe20231204demo
+# Database Setup Info
+
+## Demo
+### Database name : poe20231204demo
+### persistence-unit name : demojpa
+
+## tpProduit
+### Database name : stock
+### persistence-unit name : tpProduit
 
 # Tasks
 
