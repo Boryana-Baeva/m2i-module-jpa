@@ -6,14 +6,14 @@ import jakarta.persistence.Query;
 
 import java.util.List;
 
-public class AddressDAO {
+public class SportDAO {
     private static EntityManager entityManager = EntityManagerSingleton.getEntityManager("demojpa");
-    public static void save(Address address) {
+    public static void save(Sport s) {
         EntityTransaction tx = entityManager.getTransaction();
 
         try{
             tx.begin();
-            entityManager.persist(address);
+            entityManager.persist(s);
             tx.commit();
         }
         catch (Exception e) {
@@ -22,23 +22,23 @@ public class AddressDAO {
         }
     }
 
-    public static Address findById(Integer id){
-        return entityManager.find(Address.class, id);
+    public static Sport findById(Integer id){
+        return entityManager.find(Sport.class, id);
     }
 
-    public static List<Address> findAll(){
+    public static List<Sport> findAll(){
         // JPQL : sorte de requete SQL mais avec les classes Java
-        Query query  = entityManager.createQuery("SELECT a FROM Address a");// SELECT * FROM persons;
+        Query query  = entityManager.createQuery("SELECT s FROM Sport s");// SELECT * FROM persons;
         return query.getResultList();
     }
 
 
-    public static void delete(Address address) {
+    public static void delete(Sport s) {
         EntityTransaction tx = entityManager.getTransaction();
 
         try{
             tx.begin();
-            entityManager.remove(address);
+            entityManager.remove(s);
             tx.commit();
         }
         catch (Exception e) {
@@ -52,7 +52,7 @@ public class AddressDAO {
 
         try{
             tx.begin();
-            Query query = entityManager.createQuery("DELETE FROM Address a WHERE a.id = :id");
+            Query query = entityManager.createQuery("DELETE FROM Sport s WHERE s.id = :id");
             query.setParameter("id", id);
             query.executeUpdate();
             tx.commit();
@@ -63,12 +63,12 @@ public class AddressDAO {
         }
     }
 
-    public static void update(Address address){
+    public static void update(Sport s){
         EntityTransaction tx = entityManager.getTransaction();
 
         try{
             tx.begin();
-            entityManager.merge(address);
+            entityManager.merge(s);
             tx.commit();
         }
         catch (Exception e) {
@@ -76,5 +76,4 @@ public class AddressDAO {
             tx.rollback();
         }
     }
-
 }

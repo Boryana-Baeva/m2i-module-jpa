@@ -7,9 +7,9 @@ import jakarta.persistence.Query;
 import java.util.List;
 
 public class ProduitDAO {
+    private static EntityManager entityManager = EntityManagerSingleton.getEntityManager("tpProduit");
 
     public static void save(Produit produit){
-        EntityManager entityManager = EntityManagerSingleton.getEntityManager();
         EntityTransaction tx = entityManager.getTransaction();
 
         try {
@@ -24,20 +24,16 @@ public class ProduitDAO {
     }
 
     public static List<Produit> findAll() {
-        EntityManager entityManager = EntityManagerSingleton.getEntityManager();
         Query query = entityManager.createQuery("SELECT p FROM Produit p");
 
         return query.getResultList();
     }
 
     public static Produit findById(Integer id) {
-        EntityManager entityManager = EntityManagerSingleton.getEntityManager();
-
         return entityManager.find(Produit.class, id);
     }
 
     public static void delete(Produit produit) {
-        EntityManager entityManager = EntityManagerSingleton.getEntityManager();
         EntityTransaction tx = entityManager.getTransaction();
 
         try {
@@ -52,7 +48,6 @@ public class ProduitDAO {
     }
 
     public static void update(Produit produit) {
-        EntityManager entityManager = EntityManagerSingleton.getEntityManager();
         EntityTransaction tx = entityManager.getTransaction();
 
         try {

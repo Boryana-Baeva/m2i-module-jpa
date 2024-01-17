@@ -1,4 +1,4 @@
-package com.demo.jpa;
+package com.demo.tpVoiture;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -6,14 +6,14 @@ import jakarta.persistence.Query;
 
 import java.util.List;
 
-public class AddressDAO {
-    private static EntityManager entityManager = EntityManagerSingleton.getEntityManager("demojpa");
-    public static void save(Address address) {
+public class VoitureDAO {
+    private static EntityManager entityManager = EntityManagerSingletonVoiture.getEntityManager("tpVoitures");
+    public static void save(Voiture voiture) {
         EntityTransaction tx = entityManager.getTransaction();
 
         try{
             tx.begin();
-            entityManager.persist(address);
+            entityManager.persist(voiture);
             tx.commit();
         }
         catch (Exception e) {
@@ -22,23 +22,22 @@ public class AddressDAO {
         }
     }
 
-    public static Address findById(Integer id){
-        return entityManager.find(Address.class, id);
+    public static Voiture findById(Integer id){
+        return entityManager.find(Voiture.class, id);
     }
 
-    public static List<Address> findAll(){
-        // JPQL : sorte de requete SQL mais avec les classes Java
-        Query query  = entityManager.createQuery("SELECT a FROM Address a");// SELECT * FROM persons;
+    public static List<Voiture> findAll(){
+        Query query  = entityManager.createQuery("SELECT v FROM Voiture v");
         return query.getResultList();
     }
 
 
-    public static void delete(Address address) {
+    public static void delete(Voiture voiture) {
         EntityTransaction tx = entityManager.getTransaction();
 
         try{
             tx.begin();
-            entityManager.remove(address);
+            entityManager.remove(voiture);
             tx.commit();
         }
         catch (Exception e) {
@@ -52,7 +51,7 @@ public class AddressDAO {
 
         try{
             tx.begin();
-            Query query = entityManager.createQuery("DELETE FROM Address a WHERE a.id = :id");
+            Query query = entityManager.createQuery("DELETE FROM Voiture v WHERE v.id = :id");
             query.setParameter("id", id);
             query.executeUpdate();
             tx.commit();
@@ -63,12 +62,12 @@ public class AddressDAO {
         }
     }
 
-    public static void update(Address address){
+    public static void update(Voiture voiture){
         EntityTransaction tx = entityManager.getTransaction();
 
         try{
             tx.begin();
-            entityManager.merge(address);
+            entityManager.merge(voiture);
             tx.commit();
         }
         catch (Exception e) {
@@ -76,5 +75,4 @@ public class AddressDAO {
             tx.rollback();
         }
     }
-
 }
