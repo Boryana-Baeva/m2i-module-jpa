@@ -11,6 +11,10 @@
 ## tpVoiture
 ### Database name : tp_voitures
 ### persistence-unit name : tpVoiture
+
+## tpProjetsEntreprises
+### Database name : tp_projets_entreprises
+### persistence-unit name : tpProjets
 #
 #
 # Tasks
@@ -55,3 +59,18 @@
 ### On souhaite avoir une table SQL sports.
 ### Faire en sorte qu'une personne puisse pratiquer plusieurs sports.
 ### Et qu'un sport puisse être pratiqué par plusieurs personnes.
+#
+## TP Projets d’entreprises
+
+### Créer un projet dans lequel on manipule des :
+### - Entreprises
+### - Employés
+### - Projets
+
+### Voici les règles à respecter:
+### - Une entreprise contient une liste d’employés
+### - Un employé peut participer à plusieurs projets et un projet implique plusieurs employés
+### - Un employé appartient à une seule entreprise
+
+### Objectif:
+### Créer les Entity et DAO JPA ainsi que les tables SQL pour tester les différents “Use Cases”
