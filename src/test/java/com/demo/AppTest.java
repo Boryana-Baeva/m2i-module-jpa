@@ -126,6 +126,7 @@ public class AppTest
 
         player.addSport(sport1);
         player.addSport(sport2);
+        PersonDAO.update(player);
 
         List<Sport> sports = player.getSports();
         for (Sport s : sports) {
@@ -169,5 +170,19 @@ public class AppTest
         SportDAO.update(sport);
 
         System.out.println(sport);
+    }
+
+    @Test
+    public void testCascade(){
+        Dog chien = DogDAO.findById(1);
+        DogDAO.delete(chien);
+    }
+    @Test
+    public void testCascadePersist(){
+        Person xavier = new Person("Xavier", "Durand");
+
+        Dog dog = new Dog("Rocky", "Teckel", 5);
+        dog.setOwner(xavier);
+        DogDAO.save(dog);
     }
 }

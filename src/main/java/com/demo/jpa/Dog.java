@@ -11,7 +11,7 @@ public class Dog {
     private String name;
     private String breed;
     private int age;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private Person owner;
 
     public Dog() {
