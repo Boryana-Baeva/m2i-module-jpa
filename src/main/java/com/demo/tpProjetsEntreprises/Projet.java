@@ -12,6 +12,14 @@ public class Projet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titre;
+
+    @Column(name = "description")
+    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
     @ManyToMany
     @JoinTable(
             name="projets_employes",
@@ -19,6 +27,22 @@ public class Projet {
             inverseJoinColumns = @JoinColumn(name="participant_id")
     )
     private List<Employe> participants = new ArrayList<>();
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Projet() {
     }

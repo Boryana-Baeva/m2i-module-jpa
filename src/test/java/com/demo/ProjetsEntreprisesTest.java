@@ -1,9 +1,6 @@
 package com.demo;
 
-import com.demo.tpProjetsEntreprises.DAO;
-import com.demo.tpProjetsEntreprises.Employe;
-import com.demo.tpProjetsEntreprises.Entreprise;
-import com.demo.tpProjetsEntreprises.Projet;
+import com.demo.tpProjetsEntreprises.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -107,5 +104,39 @@ public class ProjetsEntreprisesTest
         e4.setEntreprise(apple);
         daoEmploye.update(e4);
 
+    }
+
+    @Test
+    public void testSaveClient(){
+        DAO<Projet> daoProjet = new DAO<>(Projet.class);
+        DAO<Client> daoClient = new DAO<>(Client.class);
+
+        Client deezer = new Client("Deezer");
+        Projet p1 = daoProjet.findById(1);
+        daoClient.save(deezer);
+
+        p1.setClient(deezer);
+        daoProjet.update(p1);
+
+        Projet p2 = daoProjet.findById(2);
+        p2.setClient(daoClient.findById(1));
+        daoProjet.update(p2);
+
+        Projet p3 = daoProjet.findById(3);
+        p3.setClient(daoClient.findById(2));
+        daoProjet.update(p3);
+
+        //System.out.println(deezer);
+
+
+    }
+
+    @Test
+    public void testUpdateProjetDescription(){
+        DAO<Projet> daoProjet = new DAO<>(Projet.class);
+
+        Projet projet = daoProjet.findById(1);
+        projet.setDescription("Some Google project description goes here.");
+        daoProjet.update(projet);
     }
 }
